@@ -47,6 +47,14 @@ UTM puntoRecarga::GetPosicion() const {
     return posicion;
 }
 
+float puntoRecarga::GetX() const {
+    return (float)posicion.GetLatitud();
+}
+
+float puntoRecarga::GetY() const {
+    return (float)posicion.GetLongitud();
+}
+
 //Setters
 void puntoRecarga::SetId(std::string id) {
     this->id = id;

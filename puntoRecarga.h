@@ -28,6 +28,8 @@ public:
     //Getters
     UTM GetPosicion() const;
     std::string GetId() const;
+    float GetX() const;
+    float GetY() const;
     //Setters
     void SetPosicion(UTM posicion);
     void SetId(std::string id);
