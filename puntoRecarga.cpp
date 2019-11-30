@@ -14,13 +14,13 @@
 #include "puntoRecarga.h"
 
 //Constructor por defecto
-puntoRecarga::puntoRecarga(): posicion() {
+puntoRecarga::puntoRecarga() : posicion() {
     id = "";
     eco = 0;
 }
 
 //Construcyotr parametrizado
-puntoRecarga::puntoRecarga(std::string _id, UTM _posicion, EcoCityMoto* _eco){
+puntoRecarga::puntoRecarga(std::string _id, UTM _posicion, EcoCityMoto* _eco) {
     id = _id;
     posicion = _posicion;
     eco = _eco;
@@ -28,7 +28,9 @@ puntoRecarga::puntoRecarga(std::string _id, UTM _posicion, EcoCityMoto* _eco){
 
 //Constructor copia
 puntoRecarga::puntoRecarga(const puntoRecarga& orig) {
-
+    id = orig.id;
+    eco = orig.eco;
+    posicion = orig.posicion;
 }
 
 //Destructor
@@ -52,4 +54,14 @@ void puntoRecarga::SetId(std::string id) {
 
 void puntoRecarga::SetPosicion(UTM posicion) {
     this->posicion = posicion;
+}
+
+//Operador =
+puntoRecarga& puntoRecarga::operator=(const puntoRecarga& orig) {
+    if (this != &orig) {
+        id = orig.id;
+        eco = orig.eco;
+        posicion = orig.posicion;
+    }
+    return *this;
 }

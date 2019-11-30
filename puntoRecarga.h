@@ -33,6 +33,8 @@ public:
     void SetId(std::string id);
     //Destructor
     virtual ~puntoRecarga();
+    //Operador =
+    puntoRecarga& operator=(const puntoRecarga &orig);
 private:
     std::string id;
     UTM posicion;
