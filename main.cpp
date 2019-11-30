@@ -171,7 +171,7 @@ int main(int argc, char** argv) {
         std::cerr << e.what() << std::endl;
 
     } catch (ErrorFechaIncorrecta &e) {
-        std::cerr << "Fecha Incorrecta: " << std::endl;
+        std::cerr << "Fecha Incorrecta" << std::endl;
     }
     return 0;
 }
