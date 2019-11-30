@@ -65,3 +65,9 @@ puntoRecarga& puntoRecarga::operator=(const puntoRecarga& orig) {
     }
     return *this;
 }
+
+bool puntoRecarga::operator ==(const puntoRecarga& orig){
+    if (id == orig.id && posicion == orig.posicion && eco == orig.eco)
+        return true;
+    return false;
+}

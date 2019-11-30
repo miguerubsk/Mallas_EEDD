@@ -35,6 +35,8 @@ public:
     virtual ~puntoRecarga();
     //Operador =
     puntoRecarga& operator=(const puntoRecarga &orig);
+    //Operador ==
+    bool operator==(const puntoRecarga& orig);
 private:
     std::string id;
     UTM posicion;
