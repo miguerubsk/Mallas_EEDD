@@ -37,19 +37,19 @@ puntoRecarga::~puntoRecarga() {
 }
 
 //Getters
-puntoRecarga::GetId() const {
-    return posicion;
-}
-
-puntoRecarga::GetPosicion() const {
+std::string puntoRecarga::GetId() const {
     return id;
 }
 
+UTM puntoRecarga::GetPosicion() const {
+    return posicion;
+}
+
 //Setters
-puntoRecarga::SetId(std::string id) {
+void puntoRecarga::SetId(std::string id) {
     this->id = id;
 }
 
-puntoRecarga::SetPosicion(UTM posicion) {
+void puntoRecarga::SetPosicion(UTM posicion) {
     this->posicion = posicion;
 }
