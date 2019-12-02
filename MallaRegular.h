@@ -68,5 +68,31 @@ bool Casilla<T>::borrar(const T& dato) {
  	return false;
 }
 
+template<typename T>
+MallaRegular<T>::MallaRegular(int aXMin, int aYMin, int aXMax, int aYMax, int aNDiv) : xMin(aXMin), yMin(aYMin), xMax(aXMax), yMax(aYMax){
+ 	tamCasillaX = (xMax - xMin)/aNDiv;
+ 	tamCasillaY = (yMax - yMin)/aNDiv;
+ 	mr.insert(mr.begin(), aNDiv, vector<Casilla<T> >(aNDiv));
+}
+
+template<typename T>
+Casilla<T> *MallaRegular<T>::obtenerCasilla (float x, float y){
+ 	int i = (x - xMin) / tamCasillaX;
+ 	int j = (y - yMin) / tamCasillaY;
+ 	return &mr[j][i];
+}
+
+template<typename T>
+void MallaRegular<T>::insertar(float x, float y, const T& dato){
+ 	Casilla<T> *c = obtenerCasilla(x,y);
+ 	c->insertar(dato);
+}
+
+template<typename T>
+bool MallaRegular<T>::borrar(float x, float y, const T& dato){
+ 	Casilla<T> *c = obtenerCasilla(x,y);
+ 	return c->borrar(dato);
+}
+
 #endif /* MALLAREGULAR_H */
 
