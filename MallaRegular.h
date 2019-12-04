@@ -26,7 +26,7 @@ class MallaRegular {
 private:
 	float xMin, yMin, xMax, yMax;
 	float tamCasillaX, tamCasillaY;
-	vector < vector <Casilla<T> > > mr;
+	vector<vector<Casilla<T> > > mr;
 	Casilla<T> *obtenerCasilla(float x, float y);
 public:
     MallaRegular(float aXMin, float aYMin, float aXMax, float aYMax, int nDivX, int nDivY);
