@@ -37,6 +37,7 @@ private:
     list<Itinerario> rutas;
     EcoCityMoto *acceso;
     UTM posicion;
+    int puntuacion;
 
 
 public:
@@ -44,14 +45,14 @@ public:
     void addItinerario(int id, Fecha fecha, int minutos, Moto *moto, UTM inicio, UTM fin);
     //Constructor
 
-    Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), rutas() {
+    Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), rutas(), puntuacion(0) {
     }
 
-    Cliente(string _dni, string _pass="", string _nombre="", string _direccion="", double _latitud=0, double _longitud=0, EcoCityMoto *_acceso = 0) :
-    dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud), acceso(_acceso) {
+    Cliente(string _dni, string _pass="", string _nombre="", string _direccion="", double _latitud=0, double _longitud=0, EcoCityMoto *_acceso = 0, int _puntuacion = 0) :
+    dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud), acceso(_acceso), puntuacion(_puntuacion) {
     }
 
-    Cliente(const Cliente& orig) : dni(orig.dni), pass(orig.pass), nombre(orig.nombre), direccion(orig.direccion), posicion(orig.posicion), rutas(orig.rutas), acceso(orig.acceso) {
+    Cliente(const Cliente& orig) : dni(orig.dni), pass(orig.pass), nombre(orig.nombre), direccion(orig.direccion), posicion(orig.posicion), rutas(orig.rutas), acceso(orig.acceso), puntuacion(orig.puntuacion) {
     }
 
     string GetDNI() const {
