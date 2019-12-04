@@ -6,13 +6,16 @@
 
 /* 
  * File:   MallaRegular.h
- * Author: Miguerubsk
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on 30 de noviembre de 2019, 11:40
  */
 
 #ifndef MALLAREGULAR_H
 #define MALLAREGULAR_H
+
+#include <vector>
+#include <list>
 
 template <class T>
 class MallaRegular {
