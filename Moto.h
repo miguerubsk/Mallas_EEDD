@@ -15,13 +15,16 @@
 #define MOTO_H
 
 #include "UTM.h"
+//#include "puntoRecarga.h"
 #include <string>
 #include <stdexcept>
+#include "puntoRecarga.h"
 
 class Cliente;   //forward
+class puntoRecarga;
 
 enum Status {
-    BLOQUEADA, ACTIVA, SINBATERIA, ROTA
+    BLOQUEADA, ACTIVA, SINBATERIA, ROTA, CARGANDO
 };
 
 class Moto {
@@ -48,6 +51,8 @@ public:
     void setPorcentajeBateria(float porcentajeBateria);
     float getPorcentajeBateria() const;
     std::string mostrarEstado();
+    void recargar(puntoRecarga *recargando);
+    void terminarRecarga();
 
 
 private:
@@ -56,6 +61,7 @@ private:
     UTM posicion;
     Cliente *usadoPor;
     Status estado;
+    puntoRecarga *recargando;
 };
 
 #endif /* MOTO_H */
