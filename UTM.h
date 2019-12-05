@@ -36,6 +36,12 @@ public:
     double GetLatitud() const {
         return latitud;
     }
+    
+    bool operator==(const UTM& orig){
+        if (latitud == orig.latitud && longitud == orig.longitud)
+            return true;
+        return false;
+    }
 
 };
 

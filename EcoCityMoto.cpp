@@ -54,8 +54,8 @@ EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) : idUltimo(orig.idUltimo), mot
  **/
 EcoCityMoto::~EcoCityMoto() {
     if (!entrena) {
-        guardaClientesItinerarios("prueba.clientes");
-        guardarMotos("prueba.motos");
+        guardaClientesItinerarios("clientes.prueba");
+        guardarMotos("motos.prueba");
     }
 }
 
