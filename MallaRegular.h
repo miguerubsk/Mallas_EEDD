@@ -145,5 +145,11 @@ bool MallaRegular<T>::fueraAmbito(float x, float y){
     }
 }
 
+template<typename T>
+T MallaRegular<T>::buscarCercano(float x, float y){
+
+
+}
+
 #endif /* MALLAREGULAR_H */
 

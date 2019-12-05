@@ -21,7 +21,7 @@
 class Cliente;   //forward
 
 enum Status {
-    BLOQUEADA, ACTIVA, SINBATERIA, ROTA
+    BLOQUEADA, ACTIVA, SINBATERIA, ROTA, CARGANDO
 };
 
 class Moto {
