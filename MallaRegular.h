@@ -56,9 +56,10 @@ template<typename T>
 T *Casilla<T>::buscar(const T& dato) {
     typename std::list<T>::iterator it;
     it = puntos.begin();
-    for (it != puntos.end(); ++it){
+    while(it != puntos.end()){
             if (*it ==dato)
                 return &(*it);
+            ++it;
     }
     return 0;
 }
@@ -67,11 +68,12 @@ template<typename T>
 bool Casilla<T>::borrar(const T& dato) {
     typename std::list<T>::iterator it;
     it = puntos.begin();
-    for (it != puntos.end(); ++it){
+    while(it != puntos.end()){
             if (*it == dato) {
                     puntos.erase(it);
                     return true;
             }
+            ++it;
     }
     return false;
 }
