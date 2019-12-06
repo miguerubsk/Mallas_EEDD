@@ -36,7 +36,7 @@ public:
     unsigned maxElementosPorCelda();
     unsigned mediaElementosPorCelda();
     void insertar(float x, float y, const T &dato);
-    T *buscar(float x, float y, const T &dato);
+    T *buscarDato(float x, float y, const T &dato);
     bool borrar(float x, float y, const T &dato);
 };
 
@@ -56,9 +56,10 @@ template<typename T>
 T *Casilla<T>::buscar(const T& dato) {
     typename std::list<T>::iterator it;
     it = puntos.begin();
-    for (it != puntos.end(); ++it){
+    while (it != puntos.end()){
             if (*it ==dato)
                 return &(*it);
+             ++it;
     }
     return 0;
 }
@@ -67,11 +68,12 @@ template<typename T>
 bool Casilla<T>::borrar(const T& dato) {
     typename std::list<T>::iterator it;
     it = puntos.begin();
-    for (it != puntos.end(); ++it){
+    while (it != puntos.end()){
             if (*it == dato) {
                     puntos.erase(it);
                     return true;
             }
+            ++it;
     }
     return false;
 }
@@ -99,6 +101,7 @@ void MallaRegular<T>::insertar(float x, float y, const T& dato){
 template<typename T>
 bool MallaRegular<T>::borrar(float x, float y, const T& dato){
     Casilla<T> *c = obtenerCasilla(x,y);
+    taml--;
     return c->borrar(dato);
 }
 
@@ -136,11 +139,18 @@ bool MallaRegular<T>::fueraAmbito(float x, float y){
                     typename std::list<T>::iterator it;
                     for(it=cl->puntos.begin(); it!=cl->puntos.end();it++){
                         //if((*it).getX()  )
+                        //TODO
                     }
                 }
             }
         }
     }
+}
+
+template<typename T>
+T *MallaRegular<T>::buscarDato(float x, float y, const T& dato){
+    Casilla<T> *c = obtenerCasilla(x,y);
+    return c->buscar(dato);
 }
 
 #endif /* MALLAREGULAR_H */
