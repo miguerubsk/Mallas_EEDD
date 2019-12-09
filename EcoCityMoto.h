@@ -18,6 +18,7 @@
 #include <vector>
 #include "Moto.h"
 #include "Cliente.h"
+#include "MallaRegular.h"
 
 class EcoCityMoto {
 public:
@@ -47,6 +48,7 @@ private:
     bool entrena;
     std::vector<Moto> motos;
     THashCliente clientes;
+    MallaRegular<puntoRecarga> puntosRecarga;
     vector<string> getDNIClientes();
 //    THashCliente clientesTHash;
 
