@@ -62,6 +62,10 @@ public:
     int getPuntos() const {
         return puntuacion;
     }
+    
+    string& GetDNI2(){
+        return dni;
+    }
 
     string getDisplay();
     
