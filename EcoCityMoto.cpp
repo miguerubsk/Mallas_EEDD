@@ -324,7 +324,7 @@ bool EcoCityMoto::nuevoCliente(Cliente& c) {
  * @return devuelve verdadero o falso segun si el cliente existe ya o no
  **/
 bool EcoCityMoto::eliminarCliente(Cliente& c) {
-    if (clientes.borracliente(c.GetDNI2())) {
+    if (clientes.borracliente(c.GetDNI())) {
         return true;
     } else {
         return false;

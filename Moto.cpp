@@ -21,8 +21,11 @@
 Moto::Moto() : id(""), posicion(0, 0), estado(BLOQUEADA), usadoPor(0) {
     srand(time(NULL));
     porcentajeBateria = 0 + rand() % (100 - 0);
-    if (porcentajeBateria < 15) estado = SINBATERIA;
-    else estado = BLOQUEADA;
+    if (porcentajeBateria < 15)
+        estado = SINBATERIA;
+    else
+        this->estado = BLOQUEADA;
+
 }
 
 void Moto::setEstado(Status estado) {
@@ -86,22 +89,34 @@ UTM& Moto::getPosicion() {
     return posicion;
 }
 
-void Moto::darAviso(){
-    switch (estado){
-        case BLOQUEADA: usadoPor->mostrarMensaje("BLOQUEADAaaaaa"); break;
-        case ACTIVA: usadoPor->mostrarMensaje("ACTIVADaaaA"); break;
-        case '2': usadoPor->mostrarMensaje("SIN BATERIA"); break;
-        case '3': usadoPor->mostrarMensaje("ROTA"); break;
+void Moto::darAviso() {
+    switch (estado) {
+        case BLOQUEADA: usadoPor->mostrarMensaje("BLOQUEADA");
+            break;
+        case ACTIVA: usadoPor->mostrarMensaje("ACTIVADA");
+            break;
+        case SINBATERIA: usadoPor->mostrarMensaje("SIN BATERIA");
+            break;
+        case ROTA: usadoPor->mostrarMensaje("ROTA");
+            break;
+        case CARGANDO: usadoPor->mostrarMensaje("CARGANDO");
+            break;
     }
 }
 
-string Moto::mostrarEstado(){
+string Moto::mostrarEstado() {
     string aux;
-    switch (estado){
-        case 0: aux = "BLOQUEADA"; break;
-        case 1: aux = "ACTIVADA"; break;
-        case 2: aux = "SIN BATERIA"; break;
-        case 3: aux = "ROTA"; break;
+    switch (estado) {
+        case 0: aux = "BLOQUEADA";
+            break;
+        case 1: aux = "ACTIVADA";
+            break;
+        case 2: aux = "SIN BATERIA";
+            break;
+        case 3: aux = "ROTA";
+            break;
+        case 4: aux = "CARGANDO";
+            break;
     }
     return aux;
 }
@@ -168,14 +183,14 @@ std::string Moto::GetId() const {
     return id;
 }
 
-Moto::Moto(std::string _id, double _latitud, double _longitud, int _estado, float _porcentajeBateria) :id(_id), posicion(_latitud, _longitud) {
-    if (_porcentajeBateria <= 100 && _porcentajeBateria >= 0){
+Moto::Moto(std::string _id, double _latitud, double _longitud, int _estado, float _porcentajeBateria) : id(_id), posicion(_latitud, _longitud) {
+    if (_porcentajeBateria <= 100 && _porcentajeBateria >= 0) {
         porcentajeBateria = _porcentajeBateria;
-    }else{
+    } else {
         porcentajeBateria = 100;
     }
 
-    
+
     switch (_estado) {
         case 0: estado = BLOQUEADA;
             break;
@@ -185,18 +200,20 @@ Moto::Moto(std::string _id, double _latitud, double _longitud, int _estado, floa
             break;
         case 3: estado = ROTA;
             break;
+        case 4: estado = CARGANDO;
+            break;
     }
     if (porcentajeBateria < 15)
         estado = SINBATERIA;
 }
 
-void Moto::recargar(puntoRecarga* _recargando){
+void Moto::recargar(puntoRecarga* _recargando) {
     recargando = _recargando;
     estado = CARGANDO;
     porcentajeBateria = 100;
     terminarRecarga();
 }
 
-void Moto::terminarRecarga(){
+void Moto::terminarRecarga() {
     estado = BLOQUEADA;
 }

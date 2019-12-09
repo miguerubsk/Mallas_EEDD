@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <list>
+#include <iostream>
 
 template<typename Y>
 class Casilla;
