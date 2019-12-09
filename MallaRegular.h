@@ -30,7 +30,7 @@ private:
     std::vector<std::vector<Casilla<T> > > mr;
     Casilla<T> *obtenerCasilla(float x, float y);
 public:
-    MallaRegular(float aXMin, float aYMin, float aXMax, float aYMax, int nDivX, int nDivY);
+    MallaRegular(int aXMin, int aYMin, int aXMax, int aYMax, int nDivX, int nDivY);
     T buscarCercano(float x, float y);
     bool fueraAmbito(float x, float y);
     unsigned maxElementosPorCelda();

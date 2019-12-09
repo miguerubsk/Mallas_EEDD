@@ -20,6 +20,8 @@
 #include "Cliente.h"
 #include "MallaRegular.h"
 
+class puntoRecarga;
+
 class EcoCityMoto {
 public:
     EcoCityMoto();
