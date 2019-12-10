@@ -15,6 +15,7 @@
 #define THASHCLIENTE_H
 
 #include "Cliente.h"
+#include <iostream>
 #include <vector>
 
 enum Estado {
@@ -28,8 +29,7 @@ public:
     std::string dni;
     Estado marca;
 
-    Entrada() : marca(vacia), clave(0), dni(""), dato(Cliente()) {
-    }
+    Entrada() : marca(vacia), clave(0), dni(""), dato(Cliente()) {}
 
     ~Entrada() {
     };

@@ -143,7 +143,7 @@ bool MallaRegular<T>::fueraAmbito(float x, float y) {
                 if (cl->puntos.size() != 0) {
                     typename std::list<T>::iterator it;
                     for (it = cl->puntos.begin(); it != cl->puntos.end(); it++) {
-                        if ((*it).getX() >= x - tamCasillaX && (*it).getX() <= x + tamCasillaX && (*it).getY() >= y - tamCasillaY && (*it).getY() <= y + tamCasillaY)
+                        if ((*it).GetX() >= x - tamCasillaX && (*it).GetX() <= x + tamCasillaX && (*it).GetY() >= y - tamCasillaY && (*it).GetY() <= y + tamCasillaY)
                             return false;
                     }
                 }
@@ -165,7 +165,7 @@ T MallaRegular<T>::buscarCercano(float x, float y) {
                 c1 = obtenerCasilla(i, j);
 
                 for (it = c1->puntos.begin(); it != c1->puntos.end(); it++) {
-                    double d = sqrt(pow((*it).getX() - x, 2) + pow((*it).getY() - y, 2));
+                    double d = sqrt(pow((*it).GetX() - x, 2) + pow((*it).GetY() - y, 2));
                     if (d < distancia) {
                         cercano = *it;
                         distancia = d;

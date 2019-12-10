@@ -13,8 +13,8 @@
 
 #ifndef PUNTORECARGA_H
 #define PUNTORECARGA_H
-#include"UTM.h"
-#include "EcoCityMoto.h"
+#include <iostream>
+#include "UTM.h"
 
 
 class puntoRecarga {
@@ -22,7 +22,7 @@ public:
     //Contructor por defecto
     puntoRecarga();
     //Contructor parametrizado
-    puntoRecarga(std::string _id, UTM _posicion, EcoCityMoto* _eco);
+    puntoRecarga(std::string _id, UTM _posicion);
     //Constructor copia
     puntoRecarga(const puntoRecarga& orig);
     //Getters
@@ -42,7 +42,6 @@ public:
 private:
     std::string id;
     UTM posicion;
-    EcoCityMoto* eco;
 };
 
 #endif /* PUNTORECARGA_H */

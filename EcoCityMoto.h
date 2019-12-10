@@ -14,11 +14,14 @@
 #ifndef ECOCITYMOTO_H
 #define ECOCITYMOTO_H
 
-#include "THashCliente.h"
 #include <vector>
+#include "THashCliente.h"
 #include "Moto.h"
 #include "Cliente.h"
+#include "PuntoRecarga.h"
 #include "MallaRegular.h"
+
+class Cliente;
 
 class puntoRecarga;
 
@@ -42,6 +45,7 @@ public:
     THashCliente GetClientes() const;
     void borrarMilCientes();
     void redispersarTabla();
+    puntoRecarga PuntoCercano(Cliente *cli);
 
 
 private:
