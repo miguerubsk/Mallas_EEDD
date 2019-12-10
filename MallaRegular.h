@@ -154,6 +154,31 @@ bool MallaRegular<T>::fueraAmbito(float x, float y) {
 }
 
 template<typename T>
+T MallaRegular<T>::buscarCercano(float x, float y) {
+    T cercano;
+    double distancia=99999999;
+    Casilla<T> *c1;
+    for (float i = x - (tamCasillaX); i < x + (tamCasillaX); i = i + tamCasillaX) {
+        for (float j = y - (tamCasillaY); j < y + (tamCasillaY); j = j + tamCasillaY) {
+            if (i >= xMin && i <= xMax && j >= yMin && j <= yMax) {
+                typename std::list<T>::iterator it;
+                c1 = obtenerCasilla(i, j);
+
+                for (it = c1->puntos.begin(); it != c1->puntos.end(); it++) {
+                    double d = sqrt(pow((*it).getX() - x, 2) + pow((*it).getY() - y, 2));
+                    if (d < distancia) {
+                        cercano = *it;
+                        distancia = d;
+                    }
+                }
+            }
+        }
+    }
+
+    return cercano;
+}
+
+template<typename T>
 T *MallaRegular<T>::buscarDato(float x, float y, const T& dato) {
     Casilla<T> *c = obtenerCasilla(x, y);
     return c->buscar(dato);
