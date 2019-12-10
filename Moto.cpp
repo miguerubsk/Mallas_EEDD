@@ -190,3 +190,13 @@ Moto::Moto(std::string _id, double _latitud, double _longitud, int _estado, floa
         estado = SINBATERIA;
 }
 
+void Moto::recargar(puntoRecarga* _recargando){
+    recargando = _recargando;
+    estado = CARGANDO;
+    porcentajeBateria = 100;
+    terminarRecarga();
+}
+
+void Moto::terminarRecarga(){
+    estado = BLOQUEADA;
+}
