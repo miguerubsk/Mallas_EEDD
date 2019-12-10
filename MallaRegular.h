@@ -156,7 +156,7 @@ bool MallaRegular<T>::fueraAmbito(float x, float y) {
 template<typename T>
 T MallaRegular<T>::buscarCercano(float x, float y) {
     T cercano;
-    double distancia=99999999;
+    double distancia = 99999999;
     Casilla<T> *c1;
     for (float i = x - (tamCasillaX); i < x + (tamCasillaX); i = i + tamCasillaX) {
         for (float j = y - (tamCasillaY); j < y + (tamCasillaY); j = j + tamCasillaY) {
@@ -174,7 +174,6 @@ T MallaRegular<T>::buscarCercano(float x, float y) {
             }
         }
     }
-
     return cercano;
 }
 
