@@ -17,6 +17,7 @@
 #include <vector>
 #include "THashCliente.h"
 #include "Moto.h"
+#include <random>
 #include "Cliente.h"
 #include "PuntoRecarga.h"
 #include "MallaRegular.h"
@@ -61,6 +62,7 @@ private:
     void cargarClientes(std::string filename);
     void cargarMotos(std::string filename);
     void guardaClientesItinerarios(std::string fileName);
+    void crearPuntosRecarga();
 //    void guardaClientesItinerariosHash(std::string fileName);
     void guardarMotos(string fileName);
 };

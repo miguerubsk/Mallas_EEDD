@@ -31,6 +31,7 @@ EcoCityMoto::EcoCityMoto() : idUltimo(0), motos(), clientes(16573), puntosRecarg
 EcoCityMoto::EcoCityMoto(int _tam, bool _entrena, int _tipoHash) : idUltimo(0), motos(), clientes(_tam, _tipoHash), puntosRecarga(37, 3, 38, 4, 20, 20) {
     cargarMotos("motos.txt");
     cargarClientes("clientes_v2.csv");
+    crearPuntosRecarga();
     //cargarMotos("prueba.motos");
     //cargarClientes("prueba.clientes");
 }
@@ -450,6 +451,20 @@ std::vector<Moto> EcoCityMoto::localizaMotosSinBateria() {
         }
     }
     return aux;
+}
+
+void EcoCityMoto::crearPuntosRecarga(){
+    for (int i=0; i<300; i++){
+        stringstream ss;
+        ss<<i;
+        std::mt19937 rnd(1234567890);
+        std::uniform_real_distribution<> latitud(37.3, 38.4);
+        std::uniform_real_distribution<> longitud(37.3, 38.4);
+        UTM pos=UTM (latitud(rnd), longitud(rnd));
+        puntoRecarga pr(ss.str(),pos);
+        puntosRecarga.insertar(pos.GetLatitud(),pos.GetLongitud(),pr);
+        cout << "X: " << pos.GetLatitud() << "Y: " << pos.GetLongitud() <<endl;
+    }
 }
 
 /**
