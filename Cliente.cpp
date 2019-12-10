@@ -108,6 +108,24 @@ Moto * Cliente::buscarMotoCercana() {
     return m;
 }
 
+void Cliente::recargarMoto(puntoRecarga &pr){
+        getMiMoto()->darAviso(); 
+        getMiMoto()->mostrarEstado();        
+        getMiMoto()->recargar(&pr);
+        getMiMoto()->setEstado(CARGANDO);
+        getMiMoto()->darAviso(); 
+        getMiMoto()->mostrarEstado();
+        getMiMoto()->terminarRecarga();
+        getMiMoto()->setEstado(BLOQUEADA);
+        getMiMoto()->darAviso(); 
+        getMiMoto()->mostrarEstado();
+        getMiMoto()->seDesactiva();
+    }
+
+puntoRecarga Cliente::PuntoRecargaCercano(){
+    return acceso->PuntoCercano(this);
+}
+
 /**
  * @brief funcion para devolver la lista de itinerarios
  * @return devuelve la lista doblemente enlazada de los itinerarios del cliente
