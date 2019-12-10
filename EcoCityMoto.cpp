@@ -458,6 +458,7 @@ void EcoCityMoto::crearPuntosRecarga(){
         stringstream ss;
         ss<<i;
         std::mt19937 rnd(1234567890);
+        
         std::uniform_real_distribution<> latitud(37.3, 38.4);
         std::uniform_real_distribution<> longitud(37.3, 38.4);
         UTM pos=UTM (latitud(rnd), longitud(rnd));
