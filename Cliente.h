@@ -59,11 +59,33 @@ public:
         return dni;
     }
     
+    int getPuntos() const {
+        return puntuacion;
+    }
+    
     string& GetDNI2(){
-    return dni;
+        return dni;
     }
 
     string getDisplay();
+    
+    Moto* getMiMoto() {
+        if (rutas.size() == 0){
+            std::invalid_argument("El cliente no tiene moto");
+        }else{
+            list<Itinerario>::iterator it = rutas.end();
+            it--;
+            return it->GetVehiculos();
+        }
+    }
+    
+    void decrementarPunto(){
+        if (puntuacion > 0) puntuacion--;
+    }
+    
+    void incrementarPunto(){
+        if (puntuacion < 10) puntuacion++;
+    }
     
     string GetNOMBRE() const {
         return nombre;

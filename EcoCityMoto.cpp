@@ -20,7 +20,7 @@
 /**
  * @brief contrusctor por defecto de EcoCityMoto
  **/
-EcoCityMoto::EcoCityMoto() : idUltimo(0), motos(), clientes(16573) {
+EcoCityMoto::EcoCityMoto() : idUltimo(0), motos(), clientes(16573), puntosRecarga(37, 3, 38, 4, 20, 20) {
     cargarMotos("motos.txt");
     cargarClientes("clientes_v2.csv");
     entrena = false;
@@ -28,7 +28,7 @@ EcoCityMoto::EcoCityMoto() : idUltimo(0), motos(), clientes(16573) {
     //cargarClientes("prueba.clientes");
 }
 
-EcoCityMoto::EcoCityMoto(int _tam, bool _entrena, int _tipoHash) : idUltimo(0), motos(), clientes(_tam, _tipoHash) {
+EcoCityMoto::EcoCityMoto(int _tam, bool _entrena, int _tipoHash) : idUltimo(0), motos(), clientes(_tam, _tipoHash), puntosRecarga(37, 3, 38, 4, 20, 20) {
     cargarMotos("motos.txt");
     cargarClientes("clientes_v2.csv");
     //cargarMotos("prueba.motos");
@@ -46,7 +46,7 @@ vector<string> EcoCityMoto::getDNIClientes() {
 /**
  * @brief funcion del contructor copia de EcoCityMoto
  **/
-EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) : idUltimo(orig.idUltimo), motos(orig.motos), clientes(orig.clientes) {
+EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) : idUltimo(orig.idUltimo), motos(orig.motos), clientes(orig.clientes), puntosRecarga(orig.puntosRecarga) {
 }
 
 /**
