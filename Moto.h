@@ -53,6 +53,7 @@ public:
     std::string mostrarEstado();
     void recargar(puntoRecarga *recargando);
     void terminarRecarga();
+    void descargarBateria();
 
 
 private:

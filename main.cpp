@@ -123,20 +123,10 @@ int main(int argc, char** argv) {
             std::cout << "Comienza Ruta n: " << eco.getIdUltimo() << std::endl;
             clienteRef->getMiMoto()->mostrarEstado();
             std::cout << "Desbloqueamos la Moto: " << m->GetId() << std::endl;
-            clienteRef->terminarTrayecto();
-            clienteRef->getMiMoto()->mostrarEstado();
-
-            cout << "Finaliza la  Ruta del Cliente con la Moto: " << endl;
-            std::cout << "Fin de la Ruta: " << clienteRef->getItinerario().back().GetFecha().cadena() <<
-                    ", Minutos: " << clienteRef->getItinerario().back().GetMinutos() <<
-                    ", Id: " << clienteRef->getItinerario().back().GetVehiculos()->GetId() <<
-                    ", Pos Fin: " << clienteRef->getItinerario().back().GetFin().GetLatitud() << "<-->" <<
-                    clienteRef->getItinerario().back().GetFin().GetLongitud() << std::endl;
-            cout << "--------------------------------------------------" << endl;
-            cout << "Vemos si hay que recargar la moto: " << endl;
-            cout << "Bateria de la moto: " <<m->getPorcentajeBateria() <<endl;
-            m->setPorcentajeBateria(14);
-            //cout<<"Moto usada por: "<<m->getUsadoPor()->GetNOMBRE()<<endl;
+            float auxiliar=m->getPorcentajeBateria();
+            //m->setPorcentajeBateria(14);
+            m->descargarBateria();
+            std::cout << "Bateria de la moto antes de cargarla: " << m->getPorcentajeBateria() << std::endl;
             if (m->getStatus() == SINBATERIA) {
                 cout << "La moto Utilizada quedo sin bateria (Pulsa 1 para recargar o cualquiera para No llevarla): ";
                 int carga;
@@ -164,6 +154,20 @@ int main(int argc, char** argv) {
                 }
                 cout << "Puntos del Cliente despues del Itinerario: " << clienteRef->getPuntos() << endl;
             }
+            std::cout << "Bateria de la moto despues de cargarla: " << m->getPorcentajeBateria() << std::endl;
+            cout << "--------------------------------------------------" << endl;
+            clienteRef->terminarTrayecto();
+            clienteRef->getMiMoto()->mostrarEstado();
+
+            cout << "Finaliza la  Ruta del Cliente con la Moto: " << endl;
+            std::cout << "Fin de la Ruta: " << clienteRef->getItinerario().back().GetFecha().cadena() <<
+                    ", Minutos: " << clienteRef->getItinerario().back().GetMinutos() <<
+                    ", Id: " << clienteRef->getItinerario().back().GetVehiculos()->GetId() <<
+                    ", Pos Fin: " << clienteRef->getItinerario().back().GetFin().GetLatitud() << "<-->" <<
+                    clienteRef->getItinerario().back().GetFin().GetLongitud() << std::endl;
+            cout << "--------------------------------------------------" << endl;
+            cout << "Vemos si hay que recargar la moto: " << endl;
+            cout << "Bateria de la moto: " <<m->getPorcentajeBateria() <<endl;
             
         }
     } catch (std::string &e) {

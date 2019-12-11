@@ -89,6 +89,7 @@ void Cliente::terminarTrayecto() {
     Fecha fechafin;
     srand(time(NULL));
     int aux = 1 + rand() % ((int) rutas.back().GetVehiculos()->getPorcentajeBateria() - 1);
+    //int aux = 90;
     rutas.back().SetMinutos(aux);
 
 

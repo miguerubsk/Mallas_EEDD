@@ -58,8 +58,11 @@ void Moto::setPorcentajeBateria(float porcentajeBateria) {
     }
     if (porcentajeBateria >= 0 && porcentajeBateria <= 100) {
         this->porcentajeBateria = porcentajeBateria;
+        this->setEstado(BLOQUEADA);
     } else {
-        throw std::invalid_argument("Porcentaje de bateria erroneo");
+        this->porcentajeBateria=10;
+        this->setEstado(SINBATERIA);
+        //throw std::invalid_argument("Porcentaje de bateria erroneo");
     }
 
 }
@@ -217,3 +220,10 @@ void Moto::recargar(puntoRecarga* _recargando) {
 void Moto::terminarRecarga() {
     estado = BLOQUEADA;
 }
+
+void Moto::descargarBateria() {
+    
+    porcentajeBateria=12;
+            estado=SINBATERIA;
+}
+
