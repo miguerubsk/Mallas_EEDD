@@ -95,7 +95,7 @@ void Cliente::terminarTrayecto() {
 
     rutas.back().SetFin(posicion);
     rutas.back().GetVehiculos()->setPosicion(posicion);
-    rutas.back().GetVehiculos()->darAviso();
+    rutas.back().GetVehiculos()->DarAviso();
     rutas.back().GetVehiculos()->seDesactiva();
     rutas.back().GetVehiculos()->setPorcentajeBateria((rutas.back().GetVehiculos()->getPorcentajeBateria()) - (float) aux);
 }
@@ -110,17 +110,18 @@ Moto * Cliente::buscarMotoCercana() {
 }
 
 void Cliente::recargarMoto(puntoRecarga &pr){
-        getMiMoto()->darAviso(); 
-        getMiMoto()->mostrarEstado();        
-        getMiMoto()->recargar(&pr);
-        getMiMoto()->setEstado(CARGANDO);
-        getMiMoto()->darAviso(); 
-        getMiMoto()->mostrarEstado();
-        getMiMoto()->terminarRecarga();
-        getMiMoto()->setEstado(BLOQUEADA);
-        getMiMoto()->darAviso(); 
-        getMiMoto()->mostrarEstado();
-        getMiMoto()->seDesactiva();
+    Moto *m=getMiMoto();
+        m->darAviso(); 
+        m->mostrarEstado();        
+        m->recargar(&pr);
+        m->setEstado(CARGANDO);
+        m->darAviso(); 
+        m->mostrarEstado();
+        m->terminarRecarga();
+        m->setEstado(BLOQUEADA);
+        m->darAviso(); 
+        m->mostrarEstado();
+        m->seDesactiva();
     }
 
 puntoRecarga Cliente::PuntoRecargaCercano(){

@@ -54,6 +54,7 @@ public:
     void recargar(puntoRecarga *recargando);
     void terminarRecarga();
     void descargarBateria();
+    void DarAviso();
 
 
 private:

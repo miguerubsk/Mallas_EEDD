@@ -23,6 +23,7 @@
 #include <list>
 #include "Itinerario.h"
 #include "puntoRecarga.h"
+#include "Moto.h"
 
 class EcoCityMoto; //forward
 
@@ -83,6 +84,7 @@ public:
         } else {
             list<Itinerario>::iterator it = rutas.end();
             it--;
+            Moto *m = it->GetVehiculos();
             return it->GetVehiculos();
         }
     }

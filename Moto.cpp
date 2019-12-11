@@ -93,7 +93,10 @@ UTM& Moto::getPosicion() {
 }
 
 void Moto::darAviso() {
-    switch (estado) {
+    if(usadoPor ==  NULL){
+        throw invalid_argument("No se ha encontrado al cliente");
+    }else{
+            switch (estado) {
         case BLOQUEADA: usadoPor->mostrarMensaje("BLOQUEADA");
             break;
         case ACTIVA: usadoPor->mostrarMensaje("ACTIVADA");
@@ -105,6 +108,9 @@ void Moto::darAviso() {
         case CARGANDO: usadoPor->mostrarMensaje("CARGANDO");
             break;
     }
+    }
+        
+    
 }
 
 string Moto::mostrarEstado() {
@@ -226,4 +232,9 @@ void Moto::descargarBateria() {
     porcentajeBateria=12;
             estado=SINBATERIA;
 }
+
+void Moto::DarAviso() {
+    cout<<"SIN BATERIA";
+}
+
 
