@@ -92,13 +92,11 @@ int main(int argc, char** argv) {
             std::cout << "Cliente con latitud: " << cliente.GetUTM().GetLatitud() << std::endl;
             std::cout << "Cliente con longitud: " << cliente.GetUTM().GetLongitud() << std::endl;
             std::cout << "Cliente con direccion: " << cliente.GetDIRECCION() << std::endl;
-
+            
             cout << "--------------------------------------------------" << endl;
             cout << "Localizo dicho Cliente en Jaen: " << endl;
             Cliente *clienteRef = eco.buscarCliente("26529258T");
-            std::cout << "Cliente: " << clienteRef->GetDNI() << " Situado en: " <<
-                    clienteRef->GetUTM().GetLatitud() << "," <<
-                    clienteRef->GetUTM().GetLongitud() << std::endl;
+            std::cout << "Cliente: " << clienteRef->GetDNI() << " Situado en: " << clienteRef->GetUTM().GetLatitud() << "," << clienteRef->GetUTM().GetLongitud() << std::endl;
             std::cout << "Nombre: " << clienteRef->GetNOMBRE()<<endl;
             std::cout << "Direccion: " << clienteRef->GetDIRECCION()<<endl;
             cout << "--------------------------------------------------" << endl;
@@ -106,14 +104,21 @@ int main(int argc, char** argv) {
             cout << "--------------------------------------------------" << endl;
             cout << "Localizo Moto mas cercana al Cliente: " << endl;
             Moto *m = clienteRef->buscarMotoCercana();
-            std::cout << "Moto mas cercana: " << m->GetId() << " situada en: " <<
-                    m->getPosicion().GetLatitud() << "," << m->getPosicion().GetLongitud() << std::endl;
+            std::cout << "Moto mas cercana: " << m->GetId() << " situada en: " << m->getPosicion().GetLatitud() << "," << m->getPosicion().GetLongitud() << std::endl;
             std::cout << "Estado: " << m->getEstado()<<endl;
             std::cout << "Bateria: " << m->getPorcentajeBateria()<<endl;
             
             clienteRef->desbloquearMoto(m);
+            //cout<<"Moto usada por: "<<m->getUsadoPor()->GetNOMBRE()<<endl;
+            
             std::cout << "Estado: " <<clienteRef->getMiMoto()->mostrarEstado()<<endl;
             eco.setIdUltimo(eco.getIdUltimo() + 1);
+
+            cout << "--------------------------------------------------" << endl;
+            cout << "Motos sin Bateria y no dejadas en Punto de Recarga: " << endl;
+            vector<Moto> v = eco.localizaMotosSinBateria();
+            cout << "Total de Motos sin batería y lejos de un Punto de Recarga: " << v.size() << endl;
+            
             cout << "--------------------------------------------------" << endl;
             std::cout << "Comienza Ruta n: " << eco.getIdUltimo() << std::endl;
             clienteRef->getMiMoto()->mostrarEstado();
@@ -129,15 +134,17 @@ int main(int argc, char** argv) {
                     clienteRef->getItinerario().back().GetFin().GetLongitud() << std::endl;
             cout << "--------------------------------------------------" << endl;
             cout << "Vemos si hay que recargar la moto: " << endl;
-
+            cout << "Bateria de la moto: " <<m->getPorcentajeBateria() <<endl;
+            m->setPorcentajeBateria(14);
+            //cout<<"Moto usada por: "<<m->getUsadoPor()->GetNOMBRE()<<endl;
             if (m->getStatus() == SINBATERIA) {
-                cout << "La moto Utilizada quedo sin bateria (Pulsa 1 para recargar sino otro num.): ";
+                cout << "La moto Utilizada quedo sin bateria (Pulsa 1 para recargar o cualquiera para No llevarla): ";
                 int carga;
                 cin >> carga;
                 if (carga == 1) {
                     cout << "el Cliente la lleva a un Punto de recarga" << endl;
                     puntoRecarga p = clienteRef->PuntoRecargaCercano();
-                    if (p.GetX() != 0.0) {
+                    if (&p != 0) {
                         clienteRef->recargarMoto(p);
                         cout << "Moto Cargada.......hasta 100%" << endl;
                         if (clienteRef->getPuntos() < 10) {
@@ -146,7 +153,7 @@ int main(int argc, char** argv) {
                             cout << "No se pueden Incrementar más Puntos ya tienes el MAXIMO" << endl;
                         }
                     } else {
-                        cout << "Punto de Recarga NO ENCONTRADO !!";
+                        cout << "Punto de Recarga NO ENCONTRADO"<<endl;
                     }
                 } else {
                     cout << "el Cliente NO la lleva a un Punto de recarga" << endl;
@@ -157,13 +164,7 @@ int main(int argc, char** argv) {
                 }
                 cout << "Puntos del Cliente despues del Itinerario: " << clienteRef->getPuntos() << endl;
             }
-            cout << "--------------------------------------------------" << endl;
-            cout << "Motos sin Bateria y no dejadas en Punto de Recarga: " << endl;
-            vector<Moto> v = eco.localizaMotosSinBateria();
-            cout << "Total de Motos sin batería y lejos de un Punto de Recarga: " << v.size() << endl;
-            cout << "Borramos Clientes y Redispersamos: " << endl;
-            eco.borrarMilCientes(); //borramos 1000 clientes                
-            eco.redispersarTabla();
+            
         }
     } catch (std::string &e) {
         cout << e << endl;
