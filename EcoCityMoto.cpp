@@ -46,6 +46,8 @@ puntoRecarga EcoCityMoto::PuntoCercano(Cliente* cli){
     return p;
 }
 
+
+
 vector<string> EcoCityMoto::getDNIClientes() {
     return clientes.iterar();
 }

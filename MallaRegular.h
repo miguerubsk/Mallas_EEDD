@@ -47,7 +47,7 @@ private:
 public:
     friend class MallaRegular<T>;
 
-    Casilla() : puntos() {
+    Casilla(): puntos() { 
     }
 
     void insertar(const T &dato) {
@@ -100,8 +100,7 @@ Casilla<T> *MallaRegular<T>::obtenerCasilla(float x, float y) {
 }
 
 template<typename T>
-void MallaRegular<T>::insertar(float x, float y, const T& dato) {
-    Casilla<T> *c = obtenerCasilla(x, y);
+void MallaRegular<T>::insertar(float x, float y, const T& dato) {Casilla<T> *c = obtenerCasilla(x, y);
     c->insertar(dato);
 }
 
@@ -185,11 +184,6 @@ T *MallaRegular<T>::buscarDato(float x, float y, const T& dato) {
     return c->buscar(dato);
 }
 
-template<typename T>
-T MallaRegular<T>::buscarCercano(float x, float y){
-
-
-}
 
 #endif /* MALLAREGULAR_H */
 

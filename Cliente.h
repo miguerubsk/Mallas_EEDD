@@ -46,13 +46,14 @@ public:
     void addItinerario(int id, Fecha fecha, int minutos, Moto *moto, UTM inicio, UTM fin);
     //Constructor
 
-    Cliente(): posicion() {
+    Cliente(): posicion(), rutas() {
         dni = "";
         pass = "";
         nombre = "";
         direccion = "";
         acceso = 0;
         puntuacion = rand() % 10;
+        
     }
 
     Cliente(string _dni, string _pass = "", string _nombre = "", string _direccion = "", double _latitud = 0, double _longitud = 0, EcoCityMoto *_acceso = 0, int _puntuacion = 0) :

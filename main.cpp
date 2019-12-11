@@ -84,9 +84,8 @@ int main(int argc, char** argv) {
             
             // 1)creamos estructura y se cargan clientes y motos dentro
             cout << "Creando Eco.... Comienzo de lectura de ficheros " << endl;   
-            EcoCityMoto eco(tamas[0],false,2);  
-
-              // 5) buscamos un cliente, una moto, la utiliza y la deja
+            EcoCityMoto eco(tamas[0],false,2);
+            // 5) buscamos un cliente, una moto, la utiliza y la deja
             cout << "************* Insercion de un Cliente en Jaen: " << endl;
             Cliente cliente("52524213X", "yo" , "clave", "miDireccion", 37.5, 3.5, &eco);  //ojo no es puntero
             if (!eco.nuevoCliente(cliente))
