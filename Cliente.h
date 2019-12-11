@@ -79,7 +79,7 @@ public:
 
     Moto* getMiMoto() {
         if (rutas.size() == 0) {
-            std::invalid_argument("El cliente no tiene moto");
+            throw std::invalid_argument("El cliente no tiene moto");
         } else {
             list<Itinerario>::iterator it = rutas.end();
             it--;
