@@ -14,10 +14,17 @@
 #ifndef ECOCITYMOTO_H
 #define ECOCITYMOTO_H
 
-#include "THashCliente.h"
 #include <vector>
+#include "THashCliente.h"
 #include "Moto.h"
+#include <random>
 #include "Cliente.h"
+#include "PuntoRecarga.h"
+#include "MallaRegular.h"
+
+class Cliente;
+
+class puntoRecarga;
 
 class EcoCityMoto {
 public:
@@ -39,6 +46,7 @@ public:
     THashCliente GetClientes() const;
     void borrarMilCientes();
     void redispersarTabla();
+    puntoRecarga PuntoCercano(Cliente *cli);
 
 
 private:
@@ -47,12 +55,14 @@ private:
     bool entrena;
     std::vector<Moto> motos;
     THashCliente clientes;
+    MallaRegular<puntoRecarga> puntosRecarga;
     vector<string> getDNIClientes();
 //    THashCliente clientesTHash;
 
     void cargarClientes(std::string filename);
     void cargarMotos(std::string filename);
     void guardaClientesItinerarios(std::string fileName);
+    void crearPuntosRecarga();
 //    void guardaClientesItinerariosHash(std::string fileName);
     void guardarMotos(string fileName);
 };

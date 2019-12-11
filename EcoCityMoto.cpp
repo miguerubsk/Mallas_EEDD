@@ -20,23 +20,31 @@
 /**
  * @brief contrusctor por defecto de EcoCityMoto
  **/
-EcoCityMoto::EcoCityMoto() : idUltimo(0), motos(), clientes(16573) {
+EcoCityMoto::EcoCityMoto() : idUltimo(0), motos(), clientes(16573), puntosRecarga(36, 3, 39, 4, 20, 20) {
     cargarMotos("motos.txt");
     cargarClientes("clientes_v2.csv");
     entrena = false;
+    crearPuntosRecarga();
     //cargarMotos("prueba.motos");
     //cargarClientes("prueba.clientes");
 }
 
-EcoCityMoto::EcoCityMoto(int _tam, bool _entrena, int _tipoHash) : idUltimo(0), motos(), clientes(_tam, _tipoHash) {
+EcoCityMoto::EcoCityMoto(int _tam, bool _entrena, int _tipoHash) : idUltimo(0), motos(), clientes(_tam, _tipoHash), puntosRecarga(36, 3, 39, 4, 20, 20) {
     cargarMotos("motos.txt");
     cargarClientes("clientes_v2.csv");
+    crearPuntosRecarga();
     //cargarMotos("prueba.motos");
     //cargarClientes("prueba.clientes");
 }
 
 THashCliente& EcoCityMoto::getClientes() {
     return clientes;
+}
+
+puntoRecarga EcoCityMoto::PuntoCercano(Cliente* cli){
+    puntoRecarga p;
+    p=puntosRecarga.buscarCercano(cli->GetUTM().GetLatitud(),cli->GetUTM().GetLongitud());
+    return p;
 }
 
 vector<string> EcoCityMoto::getDNIClientes() {
@@ -46,7 +54,7 @@ vector<string> EcoCityMoto::getDNIClientes() {
 /**
  * @brief funcion del contructor copia de EcoCityMoto
  **/
-EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) : idUltimo(orig.idUltimo), motos(orig.motos), clientes(orig.clientes) {
+EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) : idUltimo(orig.idUltimo), motos(orig.motos), clientes(orig.clientes), puntosRecarga(orig.puntosRecarga) {
 }
 
 /**
@@ -152,7 +160,8 @@ void EcoCityMoto::cargarClientes(std::string filename) {
                     //con todos los atributos leidos, se crea el cliente
                     //                cout<<dni<<endl;
                     UTM min(minLat, maxLon), max(maxLat, maxLon);
-                    Cliente client(dni, pass, nombre, direccion, minLat, maxLon, this);
+                    int puntos = rand()%10;
+                    Cliente client(dni, pass, nombre, direccion, minLat, maxLon, this, puntos);
 
                     //Comrueba si hay itinerarios
                     if (nItinerariosAux == "") {
@@ -438,11 +447,26 @@ void EcoCityMoto::setIdUltimo(unsigned int idUltimo) {
 std::vector<Moto> EcoCityMoto::localizaMotosSinBateria() {
     std::vector<Moto> aux;
     for (int i = 0; i < motos.size(); i++) {
-        if (motos[i].getPorcentajeBateria() < 15) {
+        if (motos[i].getPorcentajeBateria() < 15 && puntosRecarga.fueraAmbito(motos[i].getPosicion().GetLatitud(),motos[i].getPosicion().GetLongitud())) {
             aux.push_back(motos[i]);
         }
     }
     return aux;
+}
+
+void EcoCityMoto::crearPuntosRecarga(){
+    for (int i=0; i<300; i++){
+        stringstream ss;
+        ss<<i;
+        std::mt19937 rnd(1234567890);
+        
+        std::uniform_real_distribution<> latitud(37, 38);
+        std::uniform_real_distribution<> longitud(3, 4);
+        UTM pos=UTM (latitud(rnd), longitud(rnd));
+        puntoRecarga pr(ss.str(),pos);
+        puntosRecarga.insertar(pr.GetX(),pr.GetY(),pr);
+        cout << "X: " << pos.GetLatitud() << "Y: " << pos.GetLongitud() <<endl;
+    }
 }
 
 /**
