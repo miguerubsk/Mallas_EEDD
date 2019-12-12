@@ -457,10 +457,11 @@ std::vector<Moto> EcoCityMoto::localizaMotosSinBateria() {
 }
 
 void EcoCityMoto::crearPuntosRecarga(){
+    std::mt19937 rnd(1234567890);
     for (int i=0; i<300; i++){
         stringstream ss;
         ss<<i;
-        std::mt19937 rnd(1234567890);
+
         
         std::uniform_real_distribution<> latitud(37, 38);
         std::uniform_real_distribution<> longitud(3, 4);

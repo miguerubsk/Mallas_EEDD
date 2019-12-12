@@ -24,6 +24,7 @@
 #include "Moto.h"
 
 
+
 using namespace std;
 
 double calculardistaciamaslejana(vector<Cliente> v) {
@@ -82,63 +83,63 @@ int main(int argc, char** argv) {
 
         } else {
             cout << "Creando Eco.... Comienzo de lectura de ficheros " << endl;
-            EcoCityMoto eco(tamas[0], false, 2);
+            EcoCityMoto ecocity(tamas[0], false, 2);
             cout << "Añadir un Cliente en Jaen: " << endl;
-            Cliente cliente("26529258T", "Fernando", "aguila", "Calle Caldereros, nº 16", 37.5, 3.5, &eco); 
-            if (!eco.nuevoCliente(cliente))
+            Cliente fernando("26529258T", "Fernando", "aguila", "Calle Caldereros, nº 16", 37.5, 3.5, &ecocity); 
+            if (!ecocity.nuevoCliente(fernando))
                 throw invalid_argument("Cliente NO insertado: el cliente ya existe o no entro en la Tabla");
-            std::cout << "Cliente con id: " << cliente.GetDNI() << " insertado correctamente " << std::endl;
-            std::cout << "Cliente con nombre: " << cliente.GetNOMBRE() << std::endl;
-            std::cout << "Cliente con latitud: " << cliente.GetUTM().GetLatitud() << std::endl;
-            std::cout << "Cliente con longitud: " << cliente.GetUTM().GetLongitud() << std::endl;
-            std::cout << "Cliente con direccion: " << cliente.GetDIRECCION() << std::endl;
+            std::cout << "Cliente con id: " << fernando.GetDNI() << " insertado correctamente " << std::endl;
+            std::cout << "Cliente con nombre: " << fernando.GetNOMBRE() << std::endl;
+            std::cout << "Cliente con latitud: " << fernando.GetUTM().GetLatitud() << std::endl;
+            std::cout << "Cliente con longitud: " << fernando.GetUTM().GetLongitud() << std::endl;
+            std::cout << "Cliente con direccion: " << fernando.GetDIRECCION() << std::endl;
             
             cout << "--------------------------------------------------" << endl;
             cout << "Localizo dicho Cliente en Jaen: " << endl;
-            Cliente *clienteRef = eco.buscarCliente("26529258T");
-            std::cout << "Cliente: " << clienteRef->GetDNI() << " Situado en: " << clienteRef->GetUTM().GetLatitud() << "," << clienteRef->GetUTM().GetLongitud() << std::endl;
-            std::cout << "Nombre: " << clienteRef->GetNOMBRE()<<endl;
-            std::cout << "Direccion: " << clienteRef->GetDIRECCION()<<endl;
+            Cliente *cli = ecocity.buscarCliente("26529258T");
+            std::cout << "Cliente: " << cli->GetDNI() << " Situado en: " << cli->GetUTM().GetLatitud() << "," << cli->GetUTM().GetLongitud() << std::endl;
+            std::cout << "Nombre: " << cli->GetNOMBRE()<<endl;
+            std::cout << "Direccion: " << cli->GetDIRECCION()<<endl;
             cout << "--------------------------------------------------" << endl;
-            cout << "Puntos del Cliente despues del Itinerario: " << clienteRef->getPuntos() << endl;
+            cout << "Puntos del Cliente despues del Itinerario: " << cli->getPuntos() << endl;
             cout << "--------------------------------------------------" << endl;
             cout << "Localizo Moto mas cercana al Cliente: " << endl;
-            Moto *m = clienteRef->buscarMotoCercana();
-            std::cout << "Moto mas cercana: " << m->GetId() << " situada en: " << m->getPosicion().GetLatitud() << "," << m->getPosicion().GetLongitud() << std::endl;
-            std::cout << "Estado: " << m->getEstado()<<endl;
-            std::cout << "Bateria: " << m->getPorcentajeBateria()<<endl;
+            Moto *moto = cli->buscarMotoCercana();
+            std::cout << "Moto mas cercana: " << moto->GetId() << " situada en: " << moto->getPosicion().GetLatitud() << "," << moto->getPosicion().GetLongitud() << std::endl;
+            std::cout << "Estado: " << moto->getEstado()<<endl;
+            std::cout << "Bateria: " << moto->getPorcentajeBateria()<<endl;
             
-            clienteRef->desbloquearMoto(m);
+            cli->desbloquearMoto(moto);
             //cout<<"Moto usada por: "<<m->getUsadoPor()->GetNOMBRE()<<endl;
             
-            std::cout << "Estado: " <<clienteRef->getMiMoto()->mostrarEstado()<<endl;
-            eco.setIdUltimo(eco.getIdUltimo() + 1);
+            std::cout << "Estado: " <<cli->getMiMoto()->mostrarEstado()<<endl;
+            ecocity.setIdUltimo(ecocity.getIdUltimo() + 1);
 
             cout << "--------------------------------------------------" << endl;
             cout << "Motos sin Bateria y no dejadas en Punto de Recarga: " << endl;
-            vector<Moto> v = eco.localizaMotosSinBateria();
+            vector<Moto> v = ecocity.localizaMotosSinBateria();
             cout << "Total de Motos sin batería y lejos de un Punto de Recarga: " << v.size() << endl;
             
             cout << "--------------------------------------------------" << endl;
-            std::cout << "Comienza Ruta n: " << eco.getIdUltimo() << std::endl;
-            clienteRef->getMiMoto()->mostrarEstado();
-            std::cout << "Desbloqueamos la Moto: " << m->GetId() << std::endl;
-            float auxiliar=m->getPorcentajeBateria();
+            std::cout << "Comienza Ruta n: " << ecocity.getIdUltimo() << std::endl;
+            cli->getMiMoto()->mostrarEstado();
+            std::cout << "Desbloqueamos la Moto: " << moto->GetId() << std::endl;
+            float auxiliar=moto->getPorcentajeBateria();
             //m->setPorcentajeBateria(14);
-            m->descargarBateria();
-            std::cout << "Bateria de la moto antes de cargarla: " << m->getPorcentajeBateria() << std::endl;
-            if (m->getStatus() == SINBATERIA) {
+            moto->descargarBateria();
+            std::cout << "Bateria de la moto antes de cargarla: " << moto->getPorcentajeBateria() << std::endl;
+            if (moto->getStatus() == SINBATERIA) {
                 cout << "La moto Utilizada quedo sin bateria (Pulsa 1 para recargar o cualquiera para No llevarla): ";
-                int carga;
-                cin >> carga;
-                if (carga == 1) {
+                int dici;
+                cin >> dici;
+                if (dici == 1) {
                     cout << "el Cliente la lleva a un Punto de recarga" << endl;
-                    puntoRecarga p = clienteRef->PuntoRecargaCercano();
+                    puntoRecarga p = cli->PuntoRecargaCercano();
                     if (&p != 0) {
-                        clienteRef->recargarMoto(p);
+                        cli->recargarMoto(p);
                         cout << "Moto Cargada.......hasta 100%" << endl;
-                        if (clienteRef->getPuntos() < 10) {
-                            clienteRef->incrementarPunto();
+                        if (cli->getPuntos() < 10) {
+                            cli->incrementarPunto();
                         } else {
                             cout << "No se pueden Incrementar más Puntos ya tienes el MAXIMO" << endl;
                         }
@@ -147,27 +148,23 @@ int main(int argc, char** argv) {
                     }
                 } else {
                     cout << "el Cliente NO la lleva a un Punto de recarga" << endl;
-                    clienteRef->decrementarPunto();
-                    if (clienteRef->getPuntos() == 0)
-                        if (eco.eliminarCliente(cliente))
-                            cout << "Borrando cliente SIN PUNTOS: " << cliente.GetDNI() << endl;
+                    cli->decrementarPunto();
+                    if (cli->getPuntos() == 0)
+                        if (ecocity.eliminarCliente(fernando))
+                            cout << "Borrando cliente SIN PUNTOS: " << fernando.GetDNI() << endl;
                 }
-                cout << "Puntos del Cliente despues del Itinerario: " << clienteRef->getPuntos() << endl;
+                cout << "Puntos del Cliente despues del Itinerario: " << cli->getPuntos() << endl;
             }
-            std::cout << "Bateria de la moto despues de cargarla: " << m->getPorcentajeBateria() << std::endl;
+            std::cout << "Bateria de la moto despues de cargarla: " << moto->getPorcentajeBateria() << std::endl;
             cout << "--------------------------------------------------" << endl;
-            clienteRef->terminarTrayecto();
-            clienteRef->getMiMoto()->mostrarEstado();
+            cli->terminarTrayecto();
+            cli->getMiMoto()->mostrarEstado();
 
             cout << "Finaliza la  Ruta del Cliente con la Moto: " << endl;
-            std::cout << "Fin de la Ruta: " << clienteRef->getItinerario().back().GetFecha().cadena() <<
-                    ", Minutos: " << clienteRef->getItinerario().back().GetMinutos() <<
-                    ", Id: " << clienteRef->getItinerario().back().GetVehiculos()->GetId() <<
-                    ", Pos Fin: " << clienteRef->getItinerario().back().GetFin().GetLatitud() << "<-->" <<
-                    clienteRef->getItinerario().back().GetFin().GetLongitud() << std::endl;
+            std::cout << "Fin de la Ruta: " << cli->getItinerario().back().GetFecha().cadena() << ", Minutos: " << cli->getItinerario().back().GetMinutos() << ", Id: " << cli->getItinerario().back().GetVehiculos()->GetId() << ", Pos Fin: " << cli->getItinerario().back().GetFin().GetLatitud() << "<-->" << cli->getItinerario().back().GetFin().GetLongitud() << std::endl;
             cout << "--------------------------------------------------" << endl;
             cout << "Vemos si hay que recargar la moto: " << endl;
-            cout << "Bateria de la moto: " <<m->getPorcentajeBateria() <<endl;
+            cout << "Bateria de la moto: " <<moto->getPorcentajeBateria() <<endl;
             
         }
     } catch (std::string &e) {
